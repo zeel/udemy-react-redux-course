@@ -3,34 +3,30 @@ import SeasonDisplay from "./SeasonDisplay";
 class App extends React.Component {
   constructor(props) {
     super(props);
-    let isLoading = false;
-
     this.state = {
-      isLoading,
       latitude: null
     };
     window.navigator.geolocation.getCurrentPosition(
       position => {
-        isLoading = true;
-        this.setState({ latitude: position.coords.latitude, isLoading });
+        this.setState({ latitude: position.coords.latitude });
       },
       errorObj => {
-        isLoading = true;
-        this.setState({ errorMessage: errorObj.message, isLoading });
+        this.setState({ errorMessage: errorObj.message });
       }
     );
   }
+  isWinter = () => {
+    const currentMonth = new Date().getMonth();
+    const isOtoM = currentMonth >= 2 && currentMonth <= 9;
+    return this.state.latitude > 0 && isOtoM;
+  };
   render() {
     return (
       <div>
-        {this.state.isLoading ? (
-          this.state.latitude ? (
-            <SeasonDisplay isNorthearn={this.state.latitude > 0} />
-          ) : (
-            this.state.errorMessage
-          )
+        {this.state.latitude ? (
+          <SeasonDisplay isNorthearn={this.isWinter} />
         ) : (
-          "Loading..."
+          this.state.errorMessage || "Loading..."
         )}
       </div>
     );

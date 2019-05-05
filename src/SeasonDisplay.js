@@ -1,7 +1,9 @@
 import React from "react";
-class SeasonDisplay extends React.Component {
-  render() {
-    return "season display";
-  }
-}
-export default SeasonDisplay;
+
+export default ({ isWinter }) => {
+  return (
+    <div className="season-text">
+      <div>{isWinter ? "Burr, It's Chilly!" : "Let's hit the beach!"}</div>
+    </div>
+  );
+};
