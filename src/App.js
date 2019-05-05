@@ -1,28 +1,39 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import SeasonDisplay from "./SeasonDisplay";
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    let isLoading = false;
 
-class App extends Component {
+    this.state = {
+      isLoading,
+      latitude: null
+    };
+    window.navigator.geolocation.getCurrentPosition(
+      position => {
+        isLoading = true;
+        this.setState({ latitude: position.coords.latitude, isLoading });
+      },
+      errorObj => {
+        isLoading = true;
+        this.setState({ errorMessage: errorObj.message, isLoading });
+      }
+    );
+  }
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        {this.state.isLoading ? (
+          this.state.latitude ? (
+            <SeasonDisplay isNorthearn={this.state.latitude > 0} />
+          ) : (
+            this.state.errorMessage
+          )
+        ) : (
+          "Loading..."
+        )}
       </div>
     );
   }
 }
-
 export default App;
