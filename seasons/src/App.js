@@ -1,35 +1,33 @@
 import React from "react";
-import SeasonDisplay from "./SeasonDisplay";
+import SeasonDisplay from "./components/SeasonDisplay/SeasonDisplay";
+import Loader from "./components/Loader/Loader";
+
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      latitude: null
-    };
+  state = {
+    latitude: null,
+    errorMessage: ""
+  };
+
+  componentDidMount() {
     window.navigator.geolocation.getCurrentPosition(
-      position => {
-        this.setState({ latitude: position.coords.latitude });
-      },
-      errorObj => {
-        this.setState({ errorMessage: errorObj.message });
-      }
+      position => this.setState({ latitude: position.coords.latitude }),
+      errorObj => this.setState({ errorMessage: errorObj.message })
     );
   }
-  isWinter = () => {
-    const currentMonth = new Date().getMonth();
-    const isOtoM = currentMonth >= 2 && currentMonth <= 9;
-    return this.state.latitude > 0 && isOtoM;
-  };
   render() {
-    return (
-      <div>
-        {this.state.latitude ? (
-          <SeasonDisplay isNorthearn={this.isWinter} />
-        ) : (
-          this.state.errorMessage || "Loading..."
-        )}
-      </div>
-    );
+    if (this.state.latitude && !this.state.errorMessage) {
+      return (
+        <div className="container">
+          <SeasonDisplay lat={this.state.latitude} />
+        </div>
+      );
+    }
+
+    if (!this.state.latitude && this.state.errorMessage) {
+      return this.state.errorMessage;
+    }
+
+    return <Loader message="Please accept location request" />;
   }
 }
 export default App;
