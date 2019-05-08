@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 class SearchInput extends React.Component {
   static propTypes = {
-    onInputSubmit: PropTypes.func
+    onSearchSubmit: PropTypes.func
   };
 
   state = {
@@ -16,7 +16,7 @@ class SearchInput extends React.Component {
 
   onInputKeyDown = e => {
     if (e.key === "Enter") {
-      this.props.onInputSubmit(this.state.searchTerm);
+      this.props.onSearchSubmit(this.state.searchTerm);
     }
   };
 

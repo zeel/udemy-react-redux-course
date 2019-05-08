@@ -10,7 +10,7 @@ class App extends React.Component {
   state = {
     images: []
   };
-  onInputSubmit = keyWord => {
+  onSearchSubmit = keyWord => {
     const trimmedKeyword = keyWord.trim();
 
     if (trimmedKeyword) {
@@ -43,7 +43,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="ui container">
-        <SearchInput onInputSubmit={this.onInputSubmit} />
+        <SearchInput onSearchSubmit={this.onSearchSubmit} />
         {this.state.images ? (
           <ImageList images={this.state.images} />
         ) : (
