@@ -10,10 +10,10 @@ class ImageList extends React.Component {
   };
   render() {
     return (
-      <div clasName="ui segment">
+      <div className="ui segment">
         {this.props.images.map(function(image) {
           return (
-            <div>
+            <div key={image.id}>
               <label className="ui label">{image.alt}</label>
               <img className="ui small image" alt={image.alt} src={image.url} />
             </div>

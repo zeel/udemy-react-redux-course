@@ -8,7 +8,7 @@ import "./App.css";
 
 class App extends React.Component {
   state = {
-    images: []
+    images: null
   };
   onSearchSubmit = keyWord => {
     const trimmedKeyword = keyWord.trim();
@@ -35,8 +35,8 @@ class App extends React.Component {
             this.setState({ errorMsg: response.data.errors.join(", ") });
           }
         })
-        .catch(function(error) {
-          this.setState({ errorMsg: error });
+        .catch(Error => {
+          this.setState({ errorMsg: Error.response.data.errors.join(", ") });
         });
     }
   };
