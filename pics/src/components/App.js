@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import unsplash from "../api/unsplash";
 
 import SearchInput from "./SearchInput";
 import ImageList from "./ImageList";
@@ -10,36 +10,36 @@ class App extends React.Component {
   state = {
     images: null
   };
-  onSearchSubmit = keyWord => {
+
+  onSearchSubmit = async keyWord => {
     const trimmedKeyword = keyWord.trim();
 
+    // if the keyword exists
     if (trimmedKeyword) {
-      axios
-        .get(`https://api.unsplash.com/search/photos?query=${trimmedKeyword}`, {
-          headers: {
-            Authorization:
-              "Client-ID 8870f5e8c899280cd06c8cd318c973513a396f317c29bc2844b9de45f563540b"
-          }
-        })
-        .then(response => {
-          if (response.status === 200) {
-            const images = [];
-            response.data.results.forEach(result => {
-              images.push({
-                url: result.urls.regular,
-                alt: result.alt_description
-              });
+      const response = await unsplash.get("search/photos", {
+        params: { query: trimmedKeyword }
+      });
+
+      try {
+        if (response.status === 200) {
+          const images = [];
+          response.data.results.forEach(result => {
+            images.push({
+              id: result.id,
+              url: result.urls.regular,
+              alt: result.alt_description
             });
-            this.setState({ images });
-          } else {
-            this.setState({ errorMsg: response.data.errors.join(", ") });
-          }
-        })
-        .catch(Error => {
-          this.setState({ errorMsg: Error.response.data.errors.join(", ") });
-        });
+          });
+          this.setState({ images });
+        } else {
+          this.setState({ errorMsg: response.data.errors.join(", ") });
+        }
+      } catch (Error) {
+        this.setState({ errorMsg: Error.response.data.errors.join(", ") });
+      }
     }
   };
+
   render() {
     return (
       <div className="ui container">

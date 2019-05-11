@@ -1,17 +1,18 @@
 import React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
 class ImageList extends React.Component {
-  static propTypes = {
-    images: PropTypes.arrayOf({
-      url: PropTypes.string,
-      alt: PropTypes.string
-    }).isRequired
-  };
+  // static propTypes = {
+  //   images: PropTypes.arrayOf({
+  //     id: PropTypes.string,
+  //     url: PropTypes.string,
+  //     alt: PropTypes.string
+  //   }).isRequired
+  // };
   render() {
     return (
       <div className="ui segment">
-        {this.props.images.map(function(image) {
+        {this.props.images.map(image => {
           return (
             <div key={image.id}>
               <label className="ui label">{image.alt}</label>

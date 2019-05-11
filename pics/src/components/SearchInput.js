@@ -14,14 +14,10 @@ class SearchInput extends React.Component {
     this.setState({ searchTerm: e.target.value });
   };
 
-  onInputKeyDown = e => {
-    if (e.key === "Enter") {
-      this.props.onSearchSubmit(this.state.searchTerm);
-    }
-  };
-
   onFormSubmit = e => {
     e.preventDefault();
+
+    this.props.onSearchSubmit(this.state.searchTerm);
   };
 
   render() {
@@ -34,7 +30,6 @@ class SearchInput extends React.Component {
               type="text"
               placeholder="Enter keywords to search images"
               onChange={this.onInputChange}
-              onKeyDown={this.onInputKeyDown}
             />
           </div>
         </form>
