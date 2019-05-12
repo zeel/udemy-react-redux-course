@@ -25,7 +25,7 @@ class SearchInput extends React.Component {
       <div className="ui segment">
         <form onSubmit={this.onFormSubmit} className="ui form">
           <div className="field">
-            <label>Search</label>
+            <label>Search Images</label>
             <input
               type="text"
               placeholder="Enter keywords to search images"
