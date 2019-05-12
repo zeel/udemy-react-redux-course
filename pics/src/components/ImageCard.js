@@ -7,7 +7,7 @@ class ImageCard extends React.Component {
     super(props);
     this.image = React.createRef();
     this.label = React.createRef();
-    this.state = { rowEnd: 1 };
+    this.state = { rowEnd: 0 };
   }
   componentDidMount() {
     this.image.current.addEventListener("load", this.setSpans);
