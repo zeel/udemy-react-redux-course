@@ -1,9 +1,14 @@
-.image-container {
+.image-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  grid-gap: 0 20px;
+  grid-gap: 0 10px;
   grid-auto-rows: 10px;
+  min-height: 400px;
 }
-.image-container img {
-  width: 250px;
+.empty-container {
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
 }
