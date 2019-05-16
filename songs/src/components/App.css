@@ -1,0 +1,7 @@
+.app-container {
+  display: flex;
+  align-content: center;
+  flex-direction: row;
+  width: 700px;
+  margin: 30px auto;
+}
