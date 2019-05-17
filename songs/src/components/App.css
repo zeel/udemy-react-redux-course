@@ -4,4 +4,8 @@
   flex-direction: row;
   width: 700px;
   margin: 30px auto;
+  font-size: 18px;
+}
+.dummy-element {
+  width: 40px;
 }

@@ -1,24 +1,29 @@
 import React from "react";
 import PropTypes from "prop-types";
-
+import "./SongsList.css";
 class SongsList extends React.PureComponent {
   static propTypes = {
     songs: PropTypes.arrayOf({
       title: PropTypes.string,
       length: PropTypes.number
     }),
-    onSongSelect: PropTypes.func.isRequired
+    onSongSelect: PropTypes.func.isRequired,
+    selectedSongIndex: PropTypes.number
   };
-  renderSongItem(song, index) {
+  renderSongItem = (song, index) => {
     return (
-      <div>
-        <span>{song.title}</span>
-        <button onClick={this.props.onSongSelect.bind(undefined, index)}>
+      <div className="songs-list__item">
+        <span className="songs-list__item-name">{song.title}</span>
+        <button
+          className={`songs-list__item-button ${this.props.selectedSongIndex ===
+            index && "songs-list__item-button--selected"}`}
+          onClick={this.props.onSongSelect.bind(undefined, index)}
+        >
           Select
         </button>
       </div>
     );
-  }
+  };
   render() {
     const songsNode = this.props.songs.map((song, index) =>
       this.renderSongItem(song, index)

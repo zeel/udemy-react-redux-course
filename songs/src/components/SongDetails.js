@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-
+import "./SongDetails.css";
 class SongDetails extends React.PureComponent {
   static propTypes = {
     song: PropTypes.objectOf({
@@ -14,6 +14,7 @@ class SongDetails extends React.PureComponent {
         <h1>Details For:</h1>
         <div className="song-details__description">
           Title: {this.props.song.title}
+          <br />
           <br />
           Length: {this.props.song.length}
           <br />

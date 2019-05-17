@@ -19,7 +19,12 @@ class App extends React.Component {
     const selectedSongIndex = this.state.selectedSongIndex;
     return (
       <div className="app-container">
-        <SongList songs={this.state.songs} onSongSelect={this.onSongSelect} />
+        <SongList
+          songs={this.state.songs}
+          onSongSelect={this.onSongSelect}
+          selectedSongIndex={selectedSongIndex}
+        />
+        <div className="dummy-element" />
         {selectedSongIndex !== null && (
           <SongDetails song={this.state.songs[selectedSongIndex]} />
         )}
