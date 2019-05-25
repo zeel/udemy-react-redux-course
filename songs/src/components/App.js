@@ -1,35 +1,31 @@
 import React from "react";
 import SongList from "./SongsList";
 import SongDetails from "./SongDetails";
+import { connect } from "react-redux";
+import { selectSong } from "../actions";
+
 import "./App.css";
+
 class App extends React.Component {
-  state = {
-    selectedSongIndex: null,
-    songs: [
-      { title: "Naa Samajh", length: 5 },
-      { title: "Dekhte Dekhte", length: 2 },
-      { title: "Paniyon Sa", length: 3 },
-      { title: "Jitni Dafa", length: 4 }
-    ]
-  };
-  onSongSelect = index => {
-    this.setState({ selectedSongIndex: index });
-  };
   render() {
-    const selectedSongIndex = this.state.selectedSongIndex;
+    const { selectedSong, songs, onSongSelect } = this.props;
     return (
       <div className="app-container">
         <SongList
-          songs={this.state.songs}
-          onSongSelect={this.onSongSelect}
-          selectedSongIndex={selectedSongIndex}
+          songs={songs}
+          onSongSelect={onSongSelect}
+          selectedSong={selectedSong}
         />
         <div className="dummy-element" />
-        {selectedSongIndex !== null && (
-          <SongDetails song={this.state.songs[selectedSongIndex]} />
-        )}
+        {selectedSong !== null && <SongDetails song={selectedSong} />}
       </div>
     );
   }
 }
-export default App;
+const mapStateToProps = state => state;
+export default connect(
+  mapStateToProps,
+  {
+    onSongSelect: selectSong
+  }
+)(App);

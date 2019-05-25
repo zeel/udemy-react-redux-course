@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import "./SongDetails.css";
 class SongDetails extends React.PureComponent {
   static propTypes = {
-    song: PropTypes.objectOf({
+    song: PropTypes.shape({
       title: PropTypes.string,
       length: PropTypes.number
     })
