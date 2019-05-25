@@ -1,23 +1,28 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 import "./SongsList.css";
+
 class SongsList extends React.PureComponent {
   static propTypes = {
-    songs: PropTypes.arrayOf({
-      title: PropTypes.string,
-      length: PropTypes.number
-    }),
+    songs: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string,
+        length: PropTypes.number
+      })
+    ),
     onSongSelect: PropTypes.func.isRequired,
-    selectedSongIndex: PropTypes.number
+    selectedSong: PropTypes.object
   };
   renderSongItem = (song, index) => {
     return (
-      <div className="songs-list__item">
+      <div className="songs-list__item" key={index}>
         <span className="songs-list__item-name">{song.title}</span>
         <button
-          className={`songs-list__item-button ${this.props.selectedSongIndex ===
-            index && "songs-list__item-button--selected"}`}
-          onClick={this.props.onSongSelect.bind(undefined, index)}
+          className={`songs-list__item-button ${this.props.selectedSong &&
+            this.props.selectedSong.title === song.title &&
+            "songs-list__item-button--selected"}`}
+          onClick={this.props.onSongSelect.bind(undefined, song)}
         >
           Select
         </button>
@@ -31,4 +36,5 @@ class SongsList extends React.PureComponent {
     return <div className="songs-list">{songsNode}</div>;
   }
 }
+
 export default SongsList;
