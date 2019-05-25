@@ -1,6 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
 import "./SongsList.css";
+
+const mapStateToProps = (state) => state;
+const map
 class SongsList extends React.PureComponent {
   static propTypes = {
     songs: PropTypes.arrayOf({
@@ -31,4 +35,4 @@ class SongsList extends React.PureComponent {
     return <div className="songs-list">{songsNode}</div>;
   }
 }
-export default SongsList;
+export default connect(mapStateToProps,)(SongsList);

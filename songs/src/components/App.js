@@ -6,10 +6,10 @@ class App extends React.Component {
   state = {
     selectedSongIndex: null,
     songs: [
-      { title: "Song 1", length: 5 },
-      { title: "Song 2", length: 2 },
-      { title: "Song 3", length: 3 },
-      { title: "Song 4", length: 4 }
+      { title: "Naa Samajh", length: 5 },
+      { title: "Dekhte Dekhte", length: 2 },
+      { title: "Paniyon Sa", length: 3 },
+      { title: "Jitni Dafa", length: 4 }
     ]
   };
   onSongSelect = index => {
