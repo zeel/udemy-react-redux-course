@@ -4,3 +4,4 @@ class App extends React.Component {
     return "Hello World!";
   }
 }
+export default App;
