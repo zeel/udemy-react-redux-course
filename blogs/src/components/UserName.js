@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+
 import { fetchUserName } from "../actions";
 
 class UserName extends React.Component {
