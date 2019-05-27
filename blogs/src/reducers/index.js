@@ -1,2 +1,4 @@
 import { combineReducers } from "redux";
-export default combineReducers({ deleteMe: () => null });
+import posts from "./posts";
+import users from "./users";
+export default combineReducers({ posts, users });
