@@ -1,13 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { fetchPost } from "../actions";
+import { fetchPostAndUsers } from "../actions";
 
 import UserName from "./UserName";
 
 class PostList extends React.Component {
   componentDidMount() {
-    this.props.fetchPost();
+    this.props.fetchPostAndUsers();
   }
   render() {
     return (
@@ -28,5 +28,5 @@ class PostList extends React.Component {
 }
 export default connect(
   ({ posts }) => ({ posts }),
-  { fetchPost }
+  { fetchPostAndUsers }
 )(PostList);
