@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from "react";
 import jsonPlaceholderApi from "../apis/jsonplaceholder";
-export default props => {
+const useResource = resource => {
   const [resourceList, setResourceList] = useState([]);
   useEffect(() => {
-    if (props.resource === "posts" || props.resource === "todos") {
-      jsonPlaceholderApi.get(props.resource).then(response => {
+    if (resource === "posts" || resource === "todos") {
+      jsonPlaceholderApi.get(resource).then(response => {
         setResourceList(response.data);
       });
     }
-  }, [props.resource]);
+  }, [resource]);
+  return resourceList;
+};
+export default props => {
+  const resourceList = useResource(props.resource);
   return (
-    <ul>{resourceList && resourceList.map(item => <li>{item.title}</li>)}</ul>
+    <ul>
+      {resourceList &&
+        resourceList.map(item => <li key={item.id}>{item.title}</li>)}
+    </ul>
   );
 };
