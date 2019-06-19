@@ -1,4 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import Context from "../context";
 export default () => {
-  return <button className="ui button primary">Submit</button>;
+  const val = useContext(Context);
+  return (
+    <button className="ui button primary">
+      {val === "english" ? "Submit" : "voorleggen"}
+    </button>
+  );
 };
