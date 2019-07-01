@@ -11,8 +11,8 @@ import Login from "./Login";
 const App: React.FC = () => {
   return (
     <>
-      <h1>Header Component</h1>
       <BrowserRouter>
+        <Header />
         <Route path="/" exact component={Login} />
         <Route path="/streams" component={StreamList} />
         <Route path="/streams/create" component={StreamCreate} />
