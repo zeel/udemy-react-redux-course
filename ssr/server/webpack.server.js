@@ -1,8 +1,8 @@
 const path = require("path");
 const merge = require("webpack-merge");
-const webpack_base = require("./webpack.base");
+const baseConfig = require("./webpack.base");
 
-module.exports = merge(webpack_base, {
+const serverConfig = {
   // we are generating bundle for node.js not for browser.
   target: "node",
 
@@ -14,4 +14,5 @@ module.exports = merge(webpack_base, {
     filename: "bundle.js",
     path: path.resolve(__dirname, "build")
   }
-});
+};
+module.exports = merge(baseConfig, serverConfig);
