@@ -3,15 +3,12 @@ const merge = require("webpack-merge");
 const webpack_base = require("./webpack.base");
 
 module.exports = merge(webpack_base, {
-  // we are generating bundle for node.js not for browser.
-  target: "node",
-
   // Tell root file of our server application.
-  entry: "./src/index.js",
+  entry: "./src/client/client.js",
 
   // Tell where to put output file that is generated
   output: {
     filename: "bundle.js",
-    path: path.resolve(__dirname, "build")
+    path: path.resolve(__dirname, "public")
   }
 });
