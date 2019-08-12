@@ -4,7 +4,8 @@
   "description": "Server side rendering project",
   "main": "index.js",
   "scripts": {
-    "dev:build:server": "webpack --config webpack.server.js --watch"
+    "dev:build:server": "webpack --config webpack.server.js --watch",
+    "start": "nodemon -w build/bundle.js build/bundle.js"
   },
   "author": "",
   "license": "ISC",
